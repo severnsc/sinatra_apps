@@ -1,6 +1,9 @@
 require "sinatra"
 require "sinatra/reloader" if development?
 require_relative "./model/caesar_cipher.rb"
+require_relaive "./model/mastermind"
+
+enable :sessions
 
 get "/" do
 	"This is Chris' Sinatra Portfolio"
@@ -21,4 +24,21 @@ get "/caesar-cipher" do
 		cleartext = ""
 	end
 	erb :index, :locals => {:cipher => cipher, :cleartext => cleartext}
+end
+
+get "/mastermind" do
+	@session = session
+	erb :mastermind
+end
+
+post "/mastermind" do
+	name = params[:name]
+	@player = Player.new name
+	@game = Game.new @player
+	@session["name"] = name
+	redirect to("/mastermind/game")
+end
+
+get "/mastermind/game" do
+	erb :mastermind_game
 end
