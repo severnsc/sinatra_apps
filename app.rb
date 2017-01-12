@@ -3,6 +3,10 @@ require "sinatra/reloader" if development?
 require_relative "./model/caesar_cipher.rb"
 
 get "/" do
+	"This is Chris' Sinatra Portfolio"
+end
+
+get "/caesar-cipher" do
 	if params[:string] && params[:shift]
 		string = params[:string]
 		shift = params[:shift].to_i
