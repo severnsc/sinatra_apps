@@ -1,6 +1,59 @@
 <html>
 <head></head>
 <body>
-	
+	<% if setter=="set" %>
+		<% unless @board_set? %>
+			<p><%= name %>, what do you want the master code to be? You can choose any four from: Red, Green, Blue, Orange, White or Yellow. Colors can repeat as often as you like. Enter colors with a comma space.</p>
+			<form id="color_set" method="get" action="/mastermind/get">
+				<select form="color_set" name="color1">
+					<option value="red">Red</option>
+					<option value="green">Green</option>
+					<option value="blue">Blue</option>
+					<option value="orange">Orange</option>
+					<option value="white">White</option>
+					<option value="yellow">Yellow</option>
+				</select>
+				<select form="color_set" name="color2">
+					<option value="red">Red</option>
+					<option value="green">Green</option>
+					<option value="blue">Blue</option>
+					<option value="orange">Orange</option>
+					<option value="white">White</option>
+					<option value="yellow">Yellow</option>
+				</select>
+				<select form="color_set" name="color3">
+					<option value="red">Red</option>
+					<option value="green">Green</option>
+					<option value="blue">Blue</option>
+					<option value="orange">Orange</option>
+					<option value="white">White</option>
+					<option value="yellow">Yellow</option>
+				</select>
+				<select form="color_set" name="color4">
+					<option value="red">Red</option>
+					<option value="green">Green</option>
+					<option value="blue">Blue</option>
+					<option value="orange">Orange</option>
+					<option value="white">White</option>
+					<option value="yellow">Yellow</option>
+				</select>
+				<input type="submit" />
+			</form>
+			<% @board.set? = true %>
+		<% else %>
+			<p>
+				Computer guessed: <%= @game.current_guess %> Give the computer feedback by typing X for every color that is in the correct position, O for colors in the wrong position but included in the master code and Wrong for colors that aren't in the code. Separate with comma space.
+			</p>
+			<form method="get" action="/mastermind/game">
+				<input type="text" name="human_feedback" />
+				<input type="submit" />
+			</form>
+		<% end %>
+	<% else %>
+		<p>
+			<%= name %>, make your guess of the Master Code. Separate colors with comma space. Colors: Red, Blue, Green, Yellow, White, Orange.
+		</p>
+		<p>Guesses left: <%= @game.guesses %></p>
+	<% end %>
 </body>
 </html>

@@ -1,7 +1,9 @@
 require "sinatra"
 require "sinatra/reloader" if development?
 require_relative "./model/caesar_cipher.rb"
-require_relaive "./model/mastermind"
+require_relative "./model/mastermind/Players.rb"
+require_relative "./model/mastermind/Board.rb"
+require_relative "./model/mastermind/Game.rb"
 
 enable :sessions
 
@@ -27,18 +29,25 @@ get "/caesar-cipher" do
 end
 
 get "/mastermind" do
-	@session = session
 	erb :mastermind
 end
 
-post "/mastermind" do
-	name = params[:name]
-	@player = Player.new name
-	@game = Game.new @player
-	@session["name"] = name
-	redirect to("/mastermind/game")
+post "/mastermind/game" do
+	session[:name] = params[:name]
+	session[:setter] = params[:setter]
+	redirect("/mastermind/game")
 end
 
 get "/mastermind/game" do
-	erb :mastermind_game
+	name = session[:name]
+	setter = session[:setter]
+	unless @game
+		@board_set? = false
+		@player = Player.new name
+		@game = Game.new @player
+		@game.setup_game(setter)
+	else
+		
+	end
+	erb :mastermind_game, :locals => {:name => name, :setter => setter}
 end

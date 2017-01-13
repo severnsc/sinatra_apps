@@ -52,12 +52,7 @@ class Board
 				@correct[g] < @master_colors[g] ? @feedback[index] = "O" : @feedback[index] = "WRONG"
 			end
 		end
-		puts "Computer guessed: \n #{guess} \n Give the computer feedback by typing X for every color that is in the correct position, O for colors in the wrong position but included in the master code and Wrong for colors that aren't in the code. Separate with comma space."
-		@human_feedback = gets.chomp.upcase.split(", ")
-		while @human_feedback != @feedback
-			puts "The feedback you provided wasn't correct. I would know. I'm the board. Try again."
-			@human_feedback = gets.chomp.upcase.split(", ")
-		end
+		#If human feedback doesn't equal feedback
 		@number_correct = @correct.values.inject(0) {|sum, i| sum + i}
 		[@number_correct, @feedback]
 	end
