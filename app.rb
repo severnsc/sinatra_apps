@@ -36,30 +36,25 @@ post "/mastermind/game" do
 	session[:name] = params[:name]
 	session[:setter] = params[:setter]
 	setter = session[:setter]
-	if setter == "guess"
-		board = Board.new({:master => "computer"})
-		session[:master] = board.master_row
-	else
-		session[:board_set] = "false"
-		session[:feedback] = ""
-		session[:guesses] = 12
-	end
+	session[:guesses] = 12
+	session[:feedback] = ""
+	setter == "guess" ? session[:colors] = AI.set_master_code : session[:board_set] = "false"
 	redirect("/mastermind/game")
 end
 
 get "/mastermind/game" do
 	name = session[:name]
 	setter = session[:setter]
-	feedback = session[:feedback]
+	@feedback = session[:feedback]
 	@colors = session[:colors]
 	@board_set = session[:board_set]
-	guesses = session[:guesses].to_i
-	puts guesses
+	@guesses = session[:guesses].to_i
 	if setter == "guess"
+		@last_guess = session[:last_guess]
 	elsif setter == "set" && @board_set == "true"
-		AI.remember_feedback(feedback) unless feedback.empty?
-		@guess = AI.guess(guesses)
-		session[:guesses] = guesses - 1
+		AI.remember_feedback(@feedback) unless @feedback.empty?
+		@guess = AI.guess(@guesses)
+		session[:guesses] = @guesses - 1
 	end
 	erb :mastermind_game, :locals => {:name => name, :setter => setter}
 end
@@ -73,9 +68,16 @@ post "/mastermind/set" do
 end
 
 post "/mastermind/feedback" do
-	feedback = [params[:color1_feedback], params[:color2_feedback], params[:color3_feedback], params[:color4_feedback]]
 	setter = session[:setter]
 	guesses = session[:guesses].to_i
+	if setter == "set"
+		feedback = [params[:color1_feedback], params[:color2_feedback], params[:color3_feedback], params[:color4_feedback]]
+	else
+		guess = [params[:color1_guess], params[:color2_guess], params[:color3_guess], params[:color4_guess]]
+		session[:last_guess] = guess
+		session[:guesses] = guesses - 1
+		feedback = AI.feedback(guess)
+	end
 	if setter == "set" && feedback == ["X", "X", "X", "X"]
 		redirect("/mastermind/lose")
 	elsif setter == "set" && guesses == 0

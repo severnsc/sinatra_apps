@@ -65,10 +65,53 @@
 			</form>
 		<% end %>
 	<% else %>
+		<% unless @feedback.empty? %>
+			<p>Last Guess: <%= @last_guess %></p>
+			<p>Computer's feedback: <%= @feedback %></p>
+		<% end %>
+		<p>Guesses left: <%= @guesses %></p>
 		<p>
-			<%= name %>, make your guess of the Master Code. Separate colors with comma space. Colors: Red, Blue, Green, Yellow, White, Orange.
+			<%= name %>, make your guess of the Master Code. Select the colors from the dropw downs.
 		</p>
-		<p>Guesses left: <%= @game.guesses %></p>
+		<form method="post" action="/mastermind/feedback" id="guess_form">
+			<p>Color 1</p>
+			<select form="guess_form" name="color1_guess">
+				<option value="red">Red</option>
+				<option value="blue">Blue</option>
+				<option value="yellow">Yellow</option>
+				<option value="green">Green</option>
+				<option value="white">White</option>
+				<option value="orange">Orange</option>
+			</select>
+			<p>Color 2</p>
+			<select form="guess_form" name="color2_guess">
+				<option value="red">Red</option>
+				<option value="blue">Blue</option>
+				<option value="yellow">Yellow</option>
+				<option value="green">Green</option>
+				<option value="white">White</option>
+				<option value="orange">Orange</option>
+			</select>
+			<p>Color 3</p>
+			<select form="guess_form" name="color3_guess">
+				<option value="red">Red</option>
+				<option value="blue">Blue</option>
+				<option value="yellow">Yellow</option>
+				<option value="green">Green</option>
+				<option value="white">White</option>
+				<option value="orange">Orange</option>
+			</select>
+			<p>Color 4</p>
+			<select form="guess_form" name="color4_guess">
+				<option value="red">Red</option>
+				<option value="blue">Blue</option>
+				<option value="yellow">Yellow</option>
+				<option value="green">Green</option>
+				<option value="white">White</option>
+				<option value="orange">Orange</option>
+			</select><br>
+			<input type="submit">
+		</form>
 	<% end %>
 </body>
 </html>
