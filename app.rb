@@ -1,9 +1,7 @@
 require "sinatra"
 require "sinatra/reloader" if development?
 require_relative "./model/caesar_cipher.rb"
-require_relative "./model/mastermind/Players.rb"
-require_relative "./model/mastermind/Board.rb"
-require_relative "./model/mastermind/Game.rb"
+require_relative "./model/AI.rb"
 
 enable :sessions
 
