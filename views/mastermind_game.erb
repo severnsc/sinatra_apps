@@ -42,10 +42,25 @@
 		<% else %>
 			<p>Master code is: <%= @colors %> </p>
 			<p>
-				Computer guessed: <%= @guess %> Give the computer feedback by typing X for every color that is in the correct position, O for colors in the wrong position but included in the master code and W for colors that aren't in the code. Separate with comma space.
+				Computer guessed: <%= @guess %> Give the computer feedback by selecting Correct if the right color is in the right position, Wrong position if the color is in the master code, but in the wrong spot or Wrong color if the color isn't in the master code at all.
 			</p>
 			<form method="post" action="/mastermind/feedback">
-				<input type="text" name="human_feedback" />
+				<%= @colors.first %><br>
+				<input type="radio" name="color1_feedback" value="X" checked>Correct<br>
+				<input type="radio" name="color1_feedback" value="O">Wrong position<br>
+				<input type="radio" name="color1_feedback" value="W">Wrong color<br>
+				<%= @colors[1] %><br>
+				<input type="radio" name="color2_feedback" value="X" checked>Correct<br>
+				<input type="radio" name="color2_feedback" value="O">Wrong position<br>
+				<input type="radio" name="color2_feedback" value="W">Wrong color<br>
+				<%= @colors[2] %><br>
+				<input type="radio" name="color3_feedback" value="X" checked>Correct<br>
+				<input type="radio" name="color3_feedback" value="O">Wrong position<br>
+				<input type="radio" name="color3_feedback" value="W">Wrong color<br>
+				<%= @colors[3] %><br>
+				<input type="radio" name="color4_feedback" value="X" checked>Correct<br>
+				<input type="radio" name="color4_feedback" value="O">Wrong position<br>
+				<input type="radio" name="color4_feedback" value="W">Wrong color<br>
 				<input type="submit" />
 			</form>
 		<% end %>

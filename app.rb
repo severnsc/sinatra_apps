@@ -54,8 +54,9 @@ get "/mastermind/game" do
 	@colors = session[:colors]
 	@board_set = session[:board_set]
 	guesses = session[:guesses].to_i
+	puts guesses
 	if setter == "guess"
-	else
+	elsif setter == "set" && @board_set == "true"
 		AI.remember_feedback(feedback) unless feedback.empty?
 		@guess = AI.guess(guesses)
 		session[:guesses] = guesses - 1
@@ -64,21 +65,22 @@ get "/mastermind/game" do
 end
 
 post "/mastermind/set" do
-	colors = [params[:color1], params[:color2], params[:color3], params[:color4]]
+	@colors = []
+	params.each {|p, v| @colors << v}
 	session[:colors] = @colors
 	session[:board_set] = "true"
 	redirect("/mastermind/game")
 end
 
 post "/mastermind/feedback" do
-	feedback = params[:human_feedback]
+	feedback = [params[:color1_feedback], params[:color2_feedback], params[:color3_feedback], params[:color4_feedback]]
 	setter = session[:setter]
 	guesses = session[:guesses].to_i
-	if setter == "set" && feedback == "X, X, X, X"
+	if setter == "set" && feedback == ["X", "X", "X", "X"]
 		redirect("/mastermind/lose")
 	elsif setter == "set" && guesses == 0
 		redirect("/mastermind/win")
-	elsif setter == "guess" && feedback == "X, X, X, X"
+	elsif setter == "guess" && feedback == ["X", "X", "X", "X"]
 		redirect("/mastermind/win")
 	elsif setter == "guess" && guesses == 0
 		redirect("/mastermind/lose")
