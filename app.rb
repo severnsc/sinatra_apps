@@ -1,9 +1,11 @@
 require "sinatra"
 require "sinatra/reloader" if development?
+require "dotenv"
 require_relative "./model/caesar_cipher.rb"
 require_relative "./model/AI.rb"
 
 enable :sessions
+set :session_secret = ENV['KEY']
 
 get "/" do
 	erb :index
