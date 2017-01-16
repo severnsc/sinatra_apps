@@ -2,9 +2,9 @@
 <head></head>
 <body>
 	<% if setter=="set" %>
-		<% unless @board_set? %>
+		<% unless @board_set=="true" %>
 			<p><%= name %>, what do you want the master code to be? You can choose any four from: Red, Green, Blue, Orange, White or Yellow. Colors can repeat as often as you like. Enter colors with a comma space.</p>
-			<form id="color_set" method="get" action="/mastermind/get">
+			<form id="color_set" method="post" action="/mastermind/set">
 				<select form="color_set" name="color1">
 					<option value="red">Red</option>
 					<option value="green">Green</option>
@@ -39,12 +39,12 @@
 				</select>
 				<input type="submit" />
 			</form>
-			<% @board.set? = true %>
 		<% else %>
+			<p>Master code is: <%= @colors %> </p>
 			<p>
-				Computer guessed: <%= @game.current_guess %> Give the computer feedback by typing X for every color that is in the correct position, O for colors in the wrong position but included in the master code and Wrong for colors that aren't in the code. Separate with comma space.
+				Computer guessed: <%= @guess %> Give the computer feedback by typing X for every color that is in the correct position, O for colors in the wrong position but included in the master code and W for colors that aren't in the code. Separate with comma space.
 			</p>
-			<form method="get" action="/mastermind/game">
+			<form method="post" action="/mastermind/feedback">
 				<input type="text" name="human_feedback" />
 				<input type="submit" />
 			</form>

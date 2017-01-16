@@ -1,4 +1,6 @@
 class Board
+
+	attr_reader :master_row
 	
 	def initialize(params = {})
 		colors = ["red", "green", "blue", "orange", "white", "yellow"]
@@ -8,7 +10,6 @@ class Board
 			@master_colors = Hash.new(0)
 			@master_row.each {|color| @master_colors[color] += 1}
 		else
-			puts "What do you want the master code to be? You can choose any four from: Red, Green, Blue, Orange, White or Yellow. Colors can repeat as often as you like.\n Enter colors with a comma space."
 			@master_row = gets.chomp.downcase.split(", ")
 			until @master_row.all? {|color| colors.include?(color)}
 				puts "One or more of your colors isn't valid! Choose only valid colors: #{colors}"

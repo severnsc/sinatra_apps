@@ -3,14 +3,14 @@ require_relative './Board'
 require_relative './AI'
 
 class Game
-	attr_reader :guesses, :current_guess, :game_over?
+	attr_reader :guesses, :current_guess, :game_over
 	attr_accessor :board
 
 	def initialize player
 		@player = player
 		@guesses = 12
 		@correct = 0
-		@game_over? = false
+		@game_over = false
 	end
 
 	def setup_game setter
@@ -37,9 +37,10 @@ class Game
 		end
 	end
 
-	def play_turn_computer_guess
+	def play_turn_computer_guess(guesses)
+		@guesses = guesses
 		unless @guesses == 0 || @correct == 4
-			@current_guess = @ai.guess(@guesses)
+			@current_guess = AI.guess(@guesses)
 			@guesses -= 1
 			get_human_feedback
 		else
@@ -60,7 +61,7 @@ class Game
 	end
 
 	def computer_guess_end_game
-		@game_over? = true
+		@game_over = true
 		if @guesses == 0 && @correct != 4
 			puts "#{@player.name}, you stumped the computer!! You win!"
 			play_again?
@@ -71,7 +72,7 @@ class Game
 	end
 
 	def human_guess_end_game
-		@game_over? = true
+		@game_over = true
 		if @guesses == 0 && @correct != 4
 			puts "Game over #{@player.name}! You lose!"
 			play_again?

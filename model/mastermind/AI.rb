@@ -1,41 +1,40 @@
 class AI
 
-	def initialize
-		@colors = ["red", "blue", "green", "yellow", "white", "orange"]
-	end
+	@@colors = ["red", "blue", "green", "yellow", "white", "orange"]
+	@@feedback = ""
 
-	def guess(guesses)
+	def self.guess(guesses)
 		if guesses == 12
-			@guess = ["red", "blue", "green", "yellow"]
+			guess = ["red", "blue", "green", "yellow"]
 		else
-			@feedback.each_with_index do |f, index|
-				if f == "WRONG"
-					@colors.delete(@guess[index])
+			@@feedback.each_with_index do |f, index|
+				if f == "W"
+					@@colors.delete(guess[index])
 				end
 			end
-			@feedback.each_with_index do |f, index|
-				if f == "WRONG"
-					@guess[index] = @colors[rand(@colors.count)]
+			@@feedback.each_with_index do |f, index|
+				if f == "W"
+					guess[index] = @colors[rand(@@colors.count)]
 				end
 			end
 			colors_to_swap = []
-			@feedback.each_with_index do |f, index|
+			@@feedback.each_with_index do |f, index|
 				if f != "X"
-					colors_to_swap.push(@guess[index])
+					colors_to_swap.push(guess[index])
 				end
 			end
-			@feedback.each_with_index do |f, index|
+			@@feedback.each_with_index do |f, index|
 				if f != "X"
-					@guess[index] = colors_to_swap[-1]
+					guess[index] = colors_to_swap[-1]
 					colors_to_swap.pop
 				end
 			end
 		end
-		@guess
+		guess
 	end
 
-	def remember_feedback(feedback)
-		@feedback = feedback
+	def self.remember_feedback(feedback)
+		@@feedback = feedback
 	end
 
 end
