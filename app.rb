@@ -91,3 +91,13 @@ post "/mastermind/feedback" do
 		redirect("/mastermind/game")
 	end
 end
+
+get "/mastermind/win" do
+	name = session[:name]
+	erb :mastermind_win, locals => {:name => name}
+end
+
+get "/mastermind/lose" do
+	name = session[:name]
+	erb :mastermind_lose, locals => {:name => name}
+end
