@@ -6,7 +6,7 @@ require_relative "./model/AI.rb"
 enable :sessions
 
 get "/" do
-	"This is Chris' Sinatra Portfolio"
+	erb :index
 end
 
 get "/caesar-cipher" do
@@ -23,7 +23,7 @@ get "/caesar-cipher" do
 		cipher = ""
 		cleartext = ""
 	end
-	erb :index, :locals => {:cipher => cipher, :cleartext => cleartext}
+	erb :caesar_cipher, :locals => {:cipher => cipher, :cleartext => cleartext}
 end
 
 get "/mastermind" do

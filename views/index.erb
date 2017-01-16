@@ -1,25 +1,8 @@
 <html>
 <head>
 	<body>
-		<form>
-			<input type='text' name='string'/>
-			<input type='number' max='26' name='shift' />
-			<input type='submit' value='Encipher' />
-		</form>
-		<form>
-			<input type="text" name="cipher" />
-			<input type="Submit" value="Crack" />
-		</form>
-		<p>
-			The Cipher is: <%= cipher %>
-		</p>
-		<p>
-			Possible Original Messages: <% cleartext.each {|text| %>
-			<p>
-			<%= text %>
-			</p>
-			<% } unless cleartext == ""%>
-		</p>
+		<a href="/mastermind"><p>Mastermind Clone</p></a>
+		<a href="/caesar-cipher"><p>Caesar Cipher</p></a>
 	</body>
 </head>
 </html>
