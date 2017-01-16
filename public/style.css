@@ -1,0 +1,30 @@
+.centerText{
+	text-align: center;
+}
+.gamebutton{
+	width: 10em;
+	height: 10em;
+	margin: 1em auto 2em auto;
+	cursor: pointer;
+	border-radius: 100px;
+}
+#games{
+	width: 20em;
+	margin: auto;
+	text-align: center;
+}
+#mastermind{
+	background-image: url("mastermind-board-game.png");
+	background-position: -3em -3em;
+}
+#caesarcipher{
+	background-image: url("caesar-cipher.png");
+	background-position: -3em -3em;
+}
+#games a{
+	display: inline-block;
+	margin-right: 1em;
+}
+#index{
+	background-color: #f5fcff;
+}

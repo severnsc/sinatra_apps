@@ -1,8 +1,15 @@
 <html>
 <head>
-	<body>
-		<a href="/mastermind"><p>Mastermind Clone</p></a>
-		<a href="/caesar-cipher"><p>Caesar Cipher</p></a>
-	</body>
+	<link type="text/css" rel="stylesheet" href="<%= url('/style.css') %>" />
 </head>
+	<body id="index">
+		<h1 class="centerText">Welcome to Chris Severns' Sinatra Game Portfolio.</h1>
+		<p class="centerText">These projects were created while completing <a href="http://theodinproject.com">The Odin Project.</a> You can find the source code at Chris' github:<a href="https://github.com/severnsc/sinatra_apps">https://github.com/severnsc/sinatra_apps</a></p>
+		<div id="games">
+			<a href="/mastermind"><button class="gamebutton" id="mastermind"></button></a>
+			<a href="/caesar-cipher"><button class="gamebutton" id="caesarcipher"></button></a>
+			<a href="/mastermind">Mastermind Clone</a>
+			<a href="/caesar-cipher">Caesar Cipher</a>
+		</div>
+	</body>
 </html>
