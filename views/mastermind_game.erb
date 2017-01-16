@@ -66,8 +66,13 @@
 		<% end %>
 	<% else %>
 		<% unless @feedback.empty? %>
-			<p>Last Guess: <%= @last_guess %></p>
+			<% @guess_feedback_history.each do |array| %>
+				<p><%= array.first %> | <%= array.last %></p>
+			<% end %>
 			<p>Computer's feedback: <%= @feedback %></p>
+			<p>X - Correct color in Correct position</p>
+			<p>O - Color is in the code but is in the wrong position</p>
+			<p>W - Color is not in the code</p>
 		<% end %>
 		<p>Guesses left: <%= @guesses %></p>
 		<p>
