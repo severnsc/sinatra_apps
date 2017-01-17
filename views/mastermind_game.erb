@@ -58,25 +58,25 @@
 					Computer guessed: <%= @guess %></p>
 					<form class="maxsix" method="post" action="/mastermind/feedback">
 						<fieldset class="color_guess">
-							<%= @colors.first.capitalize %><br>
+							<%= @guess.first.capitalize %><br>
 							<input type="radio" name="color1_feedback" value="X" checked>Correct<br>
 							<input type="radio" name="color1_feedback" value="O">Wrong position<br>
 							<input type="radio" name="color1_feedback" value="W">Wrong color<br>
 						</fieldset>
 						<fieldset class="color_guess">
-							<%= @colors[1].capitalize %><br>
+							<%= @guess[1].capitalize %><br>
 							<input type="radio" name="color2_feedback" value="X" checked>Correct<br>
 							<input type="radio" name="color2_feedback" value="O">Wrong position<br>
 							<input type="radio" name="color2_feedback" value="W">Wrong color<br>
 						</fieldset>
 						<fieldset class="color_guess">
-							<%= @colors[2].capitalize %><br>
+							<%= @guess[2].capitalize %><br>
 							<input type="radio" name="color3_feedback" value="X" checked>Correct<br>
 							<input type="radio" name="color3_feedback" value="O">Wrong position<br>
 							<input type="radio" name="color3_feedback" value="W">Wrong color<br>
 						</fieldset>
 						<fieldset class="color_guess">
-							<%= @colors[3].capitalize %><br>
+							<%= @guess[3].capitalize %><br>
 							<input type="radio" name="color4_feedback" value="X" checked>Correct<br>
 							<input type="radio" name="color4_feedback" value="O">Wrong position<br>
 							<input type="radio" name="color4_feedback" value="W">Wrong color<br>

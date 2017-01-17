@@ -1,25 +1,37 @@
 <html>
 <head>
-	<body>
-		<form>
-			<input type='text' name='string'/>
-			<input type='number' max='26' name='shift' />
-			<input type='submit' value='Encipher' />
-		</form>
-		<form>
-			<input type="text" name="cipher" />
-			<input type="Submit" value="Crack" />
-		</form>
-		<p>
-			The Cipher is: <%= cipher %>
-		</p>
-		<p>
-			Possible Original Messages: <% cleartext.each {|text| %>
-			<p>
-			<%= text %>
-			</p>
-			<% } unless cleartext == ""%>
-		</p>
-	</body>
+	<link type="text/css" rel="stylesheet" href="<%= url('/style.css') %>"/>
 </head>
+	<body id="caesarcipher_body">
+	<div id="caesarcipher_page">
+		<div id="caesarcipher_parent">
+			<div id="caesarcipher_">
+				<h1>Caesar Cipher</h1>
+				<form class="caesarcipher_form">
+					<label>Message</label><br>
+					<input type='text' name='string'/><br>
+					<label>Shift Value (1-26)</label><br>
+					<input type='number' max='26' name='shift' /><br>
+					<input type='submit' value='Encipher' />
+				</form>
+				<form class="caesarcipher_form">
+					<label>Ciphered Message</label><br>
+					<input type="text" name="cipher" /><br>
+					<input type="Submit" value="Crack" />
+				</form>
+				<% unless cipher.empty? %>
+				<p>
+					The Cipher is: <%= cipher %>
+				</p>
+				<% end %>
+				<% unless cleartext.empty? %>
+				<p>
+					Possible Original Messages:<br>
+					<% cleartext.each {|text|%> <%= text %><br> <% } %>
+				</p>
+				<% end %>
+			</div>
+		</div>
+	</div>
+	</body>
 </html>

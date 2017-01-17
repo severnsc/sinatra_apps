@@ -140,3 +140,32 @@
 	padding:1em;
 	border:1px solid black;
 }
+#caesarcipher_page{
+	display: table;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+#caesarcipher_parent{
+	display: table-cell;
+	height: 100%;
+	vertical-align: middle;
+	background-color: rgba(0,0,0,.3);
+}
+#caesarcipher_{
+	display: inline-block;
+	text-align: center;
+	width: 99%;
+	margin:auto;
+}
+.caesarcipher_form *{
+	margin-bottom: 1em;
+}
+#caesarcipher_body{
+	background-image: url("caesar.jpg");
+	background-size: cover;
+	margin:0;
+}
+#caesarcipher_body label, #caesarcipher_body p, #caesarcipher_body h1{
+	color:white;
+} 

@@ -60,7 +60,6 @@ get "/mastermind/game" do
 		@guess_feedback_history = session[:guess_feedback_history]
 	elsif setter == "set" && @board_set == "true"
 		AI.remember_feedback(@feedback) unless @feedback.empty?
-		print AI.colors
 		@guess = AI.guess(@guesses, @feedback, last_guess)
 		session[:last_guess] = @guess
 		session[:guesses] = @guesses - 1
