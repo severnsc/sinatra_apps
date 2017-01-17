@@ -1,122 +1,162 @@
 <html>
-<head></head>
-<body>
+<head>
+	<link type="text/css" rel="stylesheet" href="<%= url('/style.css') %>"/>
+</head>
+<body id="code_set_body">
 	<% if setter=="set" %>
 		<% unless @board_set=="true" %>
-			<p><%= name %>, what do you want the master code to be? You can choose any four from: Red, Green, Blue, Orange, White or Yellow. Colors can repeat as often as you like. Enter colors with a comma space.</p>
-			<form id="color_set" method="post" action="/mastermind/set">
-				<select form="color_set" name="color1">
-					<option value="red">Red</option>
-					<option value="green">Green</option>
-					<option value="blue">Blue</option>
-					<option value="orange">Orange</option>
-					<option value="white">White</option>
-					<option value="yellow">Yellow</option>
-				</select>
-				<select form="color_set" name="color2">
-					<option value="red">Red</option>
-					<option value="green">Green</option>
-					<option value="blue">Blue</option>
-					<option value="orange">Orange</option>
-					<option value="white">White</option>
-					<option value="yellow">Yellow</option>
-				</select>
-				<select form="color_set" name="color3">
-					<option value="red">Red</option>
-					<option value="green">Green</option>
-					<option value="blue">Blue</option>
-					<option value="orange">Orange</option>
-					<option value="white">White</option>
-					<option value="yellow">Yellow</option>
-				</select>
-				<select form="color_set" name="color4">
-					<option value="red">Red</option>
-					<option value="green">Green</option>
-					<option value="blue">Blue</option>
-					<option value="orange">Orange</option>
-					<option value="white">White</option>
-					<option value="yellow">Yellow</option>
-				</select>
-				<input type="submit" />
-			</form>
+		<div id="code_set_page">
+			<div id="code_set_parent">
+				<div id="code_set">
+					<p class="maxsix" id="color_set_instructions"><%= name %>, what do you want the master code to be? You can choose any four from: Red, Green, Blue, Orange, White or Yellow. Colors can repeat as often as you like. Enter colors with a comma space.</p>
+					<form id="color_set" method="post" action="/mastermind/set">
+						<select form="color_set" name="color1">
+							<option value="red">Red</option>
+							<option value="green">Green</option>
+							<option value="blue">Blue</option>
+							<option value="orange">Orange</option>
+							<option value="white">White</option>
+							<option value="yellow">Yellow</option>
+						</select>
+						<select form="color_set" name="color2">
+							<option value="red">Red</option>
+							<option value="green">Green</option>
+							<option value="blue">Blue</option>
+							<option value="orange">Orange</option>
+							<option value="white">White</option>
+							<option value="yellow">Yellow</option>
+						</select>
+						<select form="color_set" name="color3">
+							<option value="red">Red</option>
+							<option value="green">Green</option>
+							<option value="blue">Blue</option>
+							<option value="orange">Orange</option>
+							<option value="white">White</option>
+							<option value="yellow">Yellow</option>
+						</select>
+						<select form="color_set" name="color4">
+							<option value="red">Red</option>
+							<option value="green">Green</option>
+							<option value="blue">Blue</option>
+							<option value="orange">Orange</option>
+							<option value="white">White</option>
+							<option value="yellow">Yellow</option>
+						</select><br>
+						<input id="color_set_submit" type="submit" value="Set the Master Code" />
+					</form>
+				</div>
+			</div>
+		</div>
 		<% else %>
-			<p>Master code is: <%= @colors %> </p>
-			<p>
-				Computer guessed: <%= @guess %> Give the computer feedback by selecting Correct if the right color is in the right position, Wrong position if the color is in the master code, but in the wrong spot or Wrong color if the color isn't in the master code at all.
-			</p>
-			<form method="post" action="/mastermind/feedback">
-				<%= @colors.first %><br>
-				<input type="radio" name="color1_feedback" value="X" checked>Correct<br>
-				<input type="radio" name="color1_feedback" value="O">Wrong position<br>
-				<input type="radio" name="color1_feedback" value="W">Wrong color<br>
-				<%= @colors[1] %><br>
-				<input type="radio" name="color2_feedback" value="X" checked>Correct<br>
-				<input type="radio" name="color2_feedback" value="O">Wrong position<br>
-				<input type="radio" name="color2_feedback" value="W">Wrong color<br>
-				<%= @colors[2] %><br>
-				<input type="radio" name="color3_feedback" value="X" checked>Correct<br>
-				<input type="radio" name="color3_feedback" value="O">Wrong position<br>
-				<input type="radio" name="color3_feedback" value="W">Wrong color<br>
-				<%= @colors[3] %><br>
-				<input type="radio" name="color4_feedback" value="X" checked>Correct<br>
-				<input type="radio" name="color4_feedback" value="O">Wrong position<br>
-				<input type="radio" name="color4_feedback" value="W">Wrong color<br>
-				<input type="submit" />
-			</form>
+		<div id="human_feedback_page">
+			<div id="human_feedback_parent">
+				<div id="human_feedback">
+					<p class="maxsix 1em_bottom">
+						Give the computer feedback by selecting Correct if the right color is in the right position, Wrong position if the color is in the master code, but in the wrong spot or Wrong color if the color isn't in the master code at all.
+					</p>
+					<p class="maxsix 1em_bottom">Master code is: <%= @colors %><br>
+					Computer guessed: <%= @guess %></p>
+					<form class="maxsix" method="post" action="/mastermind/feedback">
+						<fieldset class="color_guess">
+							<%= @colors.first.capitalize %><br>
+							<input type="radio" name="color1_feedback" value="X" checked>Correct<br>
+							<input type="radio" name="color1_feedback" value="O">Wrong position<br>
+							<input type="radio" name="color1_feedback" value="W">Wrong color<br>
+						</fieldset>
+						<fieldset class="color_guess">
+							<%= @colors[1].capitalize %><br>
+							<input type="radio" name="color2_feedback" value="X" checked>Correct<br>
+							<input type="radio" name="color2_feedback" value="O">Wrong position<br>
+							<input type="radio" name="color2_feedback" value="W">Wrong color<br>
+						</fieldset>
+						<fieldset class="color_guess">
+							<%= @colors[2].capitalize %><br>
+							<input type="radio" name="color3_feedback" value="X" checked>Correct<br>
+							<input type="radio" name="color3_feedback" value="O">Wrong position<br>
+							<input type="radio" name="color3_feedback" value="W">Wrong color<br>
+						</fieldset>
+						<fieldset class="color_guess">
+							<%= @colors[3].capitalize %><br>
+							<input type="radio" name="color4_feedback" value="X" checked>Correct<br>
+							<input type="radio" name="color4_feedback" value="O">Wrong position<br>
+							<input type="radio" name="color4_feedback" value="W">Wrong color<br>
+						</fieldset>
+						<input type="submit" value="Give Feedback" />
+					</form>
+				</div>
+			</div>
+		</div>
 		<% end %>
 	<% else %>
-		<% unless @feedback.empty? %>
-			<% @guess_feedback_history.each do |array| %>
-				<p><%= array.first %> | <%= array.last %></p>
-			<% end %>
-			<p>Computer's feedback: <%= @feedback %></p>
-			<p>X - Correct color in Correct position</p>
-			<p>O - Color is in the code but is in the wrong position</p>
-			<p>W - Color is not in the code</p>
-		<% end %>
-		<p>Guesses left: <%= @guesses %></p>
-		<p>
-			<%= name %>, make your guess of the Master Code. Select the colors from the drop downs.
-		</p>
-		<form method="post" action="/mastermind/feedback" id="guess_form">
-			<p>Color 1</p>
-			<select form="guess_form" name="color1_guess">
-				<option value="red">Red</option>
-				<option value="blue">Blue</option>
-				<option value="yellow">Yellow</option>
-				<option value="green">Green</option>
-				<option value="white">White</option>
-				<option value="orange">Orange</option>
-			</select>
-			<p>Color 2</p>
-			<select form="guess_form" name="color2_guess">
-				<option value="red">Red</option>
-				<option value="blue">Blue</option>
-				<option value="yellow">Yellow</option>
-				<option value="green">Green</option>
-				<option value="white">White</option>
-				<option value="orange">Orange</option>
-			</select>
-			<p>Color 3</p>
-			<select form="guess_form" name="color3_guess">
-				<option value="red">Red</option>
-				<option value="blue">Blue</option>
-				<option value="yellow">Yellow</option>
-				<option value="green">Green</option>
-				<option value="white">White</option>
-				<option value="orange">Orange</option>
-			</select>
-			<p>Color 4</p>
-			<select form="guess_form" name="color4_guess">
-				<option value="red">Red</option>
-				<option value="blue">Blue</option>
-				<option value="yellow">Yellow</option>
-				<option value="green">Green</option>
-				<option value="white">White</option>
-				<option value="orange">Orange</option>
-			</select><br>
-			<input type="submit">
-		</form>
+	<div id="human_guess_page">
+		<div id="human_guess_parent">
+			<div id="human_guess">
+				<% unless @feedback.empty? %>
+					<p>X - Correct color in Correct position</p>
+					<p>O - Color is in the code but is in the wrong position</p>
+					<p>W - Color is not in the code</p>
+					<div id="feedback_history">
+						<h2>Past Guesses & Feedback</h2>
+						<% @guess_feedback_history.each do |array| %>
+							<p><%= array.first %> | <%= array.last %></p>
+						<% end %>
+					</div>
+					<p>Computer's feedback: <%= @feedback %></p>
+				<% end %>
+				<p>Guesses left: <%= @guesses %></p>
+				<p>
+					<%= name %>, make your guess of the Master Code. Select the colors from the drop downs.
+				</p>
+				<form method="post" action="/mastermind/feedback" id="guess_form">
+					<fieldset class="color_guess">
+						<p>Color 1</p>
+						<select form="guess_form" name="color1_guess">
+							<option value="red">Red</option>
+							<option value="blue">Blue</option>
+							<option value="yellow">Yellow</option>
+							<option value="green">Green</option>
+							<option value="white">White</option>
+							<option value="orange">Orange</option>
+						</select>
+					</fieldset>
+					<fieldset class="color_guess">
+						<p>Color 2</p>
+						<select form="guess_form" name="color2_guess">
+							<option value="red">Red</option>
+							<option value="blue">Blue</option>
+							<option value="yellow">Yellow</option>
+							<option value="green">Green</option>
+							<option value="white">White</option>
+							<option value="orange">Orange</option>
+						</select>
+					</fieldset>
+					<fieldset class="color_guess">
+						<p>Color 3</p>
+						<select form="guess_form" name="color3_guess">
+							<option value="red">Red</option>
+							<option value="blue">Blue</option>
+							<option value="yellow">Yellow</option>
+							<option value="green">Green</option>
+							<option value="white">White</option>
+							<option value="orange">Orange</option>
+						</select>
+					</fieldset>
+					<fieldset class="color_guess">
+						<p>Color 4</p>
+						<select form="guess_form" name="color4_guess">
+							<option value="red">Red</option>
+							<option value="blue">Blue</option>
+							<option value="yellow">Yellow</option>
+							<option value="green">Green</option>
+							<option value="white">White</option>
+							<option value="orange">Orange</option>
+						</select><br>
+					</fieldset>
+					<input type="submit">
+				</form>
+			</div>
+		</div>
+	</div>
 	<% end %>
 </body>
 </html>

@@ -1,6 +1,10 @@
 <html>
-<head></head>
+<head>
+	<link type="text/css" rel="stylesheet" href="<%= url('/style.css') %>" />
+</head>
 <body>
-	<h1>Congratulations <%= name %>! You won!</h1>
+	<h1 class="centerText">Congratulations <%= name %>! You won!</h1>
+	<img class="imgcenter" src="<%= url('/turmp-winning.jpg') %>" />
+	<button class="playagain imgcenter"><a href="/mastermind">Play Again</a></button>
 </body>
 </html>

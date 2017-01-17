@@ -1,12 +1,22 @@
 .centerText{
 	text-align: center;
 }
+.imgcenter{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
 .gamebutton{
 	width: 10em;
 	height: 10em;
 	margin: 1em auto 2em auto;
 	cursor: pointer;
 	border-radius: 100px;
+}
+.maxsix{
+	max-width: 600px;
+	margin-left: auto;
+	margin-right: auto;
 }
 #games{
 	width: 20em;
@@ -52,4 +62,81 @@
 	height: 100%;
 	overflow: hidden;
 	background-color: #f5fcff;
+}
+#code_set_page{
+	display: table;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+#code_set_parent{
+	display: table-cell;
+	height: 100%;
+	vertical-align: middle;
+}
+#code_set{
+	text-align: center;
+	display: inline-block;
+	width: 99%;
+	margin:auto;
+}
+#code_set_body{
+	background-color: #ecf6f9;
+}
+#color_set_instructions{
+	margin-bottom: 2em;
+}
+#color_set_submit{
+	margin-top: 1em;
+}
+#human_feedback_page{
+	display: table;
+	width: 100%;
+	height: 100%;
+	overflow:hidden;
+}
+#human_feedback_parent{
+	display: table-cell;
+	height: 100%;
+	vertical-align:middle;
+}
+#human_feedback{
+	text-align: center;
+	display: inline-block;
+	width: 99%;
+	margin:auto;
+}
+.1em_bottom{
+	margin-bottom: 1em;
+}
+.color_feedback, .color_guess{
+	display: inline;
+	border: none;
+	text-align: left;
+}
+.playagain{
+	width:5em;
+	margin-top: 1em;
+}
+#human_guess_page{
+	display: table;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+#human_guess_parent{
+	display: table-cell;
+	height: 100%;
+	vertical-align: middle;
+}
+#human_guess{
+	text-align: center;
+	display: inline-block;
+	width: 99%;
+	margin: auto;
+}
+#feedback_history{
+	display: inherit;
+	padding:1em;
+	border:1px solid black;
 }

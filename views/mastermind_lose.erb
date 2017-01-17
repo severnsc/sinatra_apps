@@ -1,6 +1,10 @@
 <html>
-<head></head>
+<head>
+	<link type="text/css" rel="stylesheet" href="<%= url('/style.css') %>" />
+</head>
 <body>
-	<h1>Sorry <%= name %>! You lose! You're a losah!!!</h1>
+	<h1 class="centerText">Sorry <%= name %>! You lose! You're a losah!!!</h1>
+	<img class="imgcenter" src="<%= url('/Loser--meme-42879.jpg') %>"/>
+	<button class="playagain imgcenter"><a href="/mastermind">Play Again</a></button>
 </body>
 </html>
