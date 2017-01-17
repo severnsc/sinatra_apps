@@ -1,17 +1,23 @@
 <html>
-<head></head>
-<body>
-	<p>What is your name?</p>
-	<form method="post" id="setup_form" action="/mastermind/game">
-		<input type="text" name="name" />
-		<label>
-			Do you want to guess or set the master code?
-		</label>
-		<select form="setup_form" name="setter">
-			<option value="set">Set</option>
-			<option value="guess">Guess</option>
-		</select>
-		<input type="submit" />
-	</form>
+<head>
+	<link type="text/css" rel="stylesheet" href="<%= url('/style.css') %>"/>
+</head>
+<body id="mastermind_page">
+	<div id="mastermind_parent">
+		<div id="mastermind_start">
+			<p>What is your name?</p>
+			<form method="post" id="setup_form" action="/mastermind/game">
+				<input type="text" name="name" /><br>
+				<label>
+					Do you want to guess or set the master code?
+				</label><br>
+				<select form="setup_form" name="setter">
+					<option value="set">Set</option>
+					<option value="guess">Guess</option>
+				</select><br>
+				<input type="submit" />
+			</form>
+		</div>
+	</div>
 </body>
 </html>
